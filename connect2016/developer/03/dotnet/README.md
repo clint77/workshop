@@ -10,10 +10,10 @@ This uses .NET Web API to provide REST web service access to a Couchbase data st
 This by default connects to _localhost_ and a bucket called _default_. However you can change those settings in _Web.config_.
 
 ## API
-GET /api/get/{id}
-GET /api/getAll
-POST /api/save
-POST /api/delete
+* GET /api/get/{id}
+* GET /api/getAll
+* POST /api/save
+* POST /api/delete
 
 ## Starting up the service
 Debug > Start Debugging (or F5)
