@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Couchbase;
 using Couchbase.Core;
 using Couchbase.N1QL;
@@ -11,6 +12,7 @@ using workshop_dotnet.Models;
 namespace workshop_dotnet.Controllers
 {
     [RoutePrefix("api")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PersonController : ApiController
     {
         private static readonly string BucketName = ConfigurationManager.AppSettings.Get("couchbaseBucket");
@@ -18,18 +20,20 @@ namespace workshop_dotnet.Controllers
 
         [HttpGet]
         [Route("get/{id?}")]
-        public async Task<IHttpActionResult> Get(string id = null)
+        public async Task<IHttpActionResult> Get(string document_id = null)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(document_id))
             {
                 return BadRequest("Missing or empty 'id' query string parameter");
             }
 
-            var result = await _bucket.GetAsync<Person>(id);
+            var result = await _bucket.GetAsync<Person>(document_id);
             if (!result.Success)
             {
                 return Content(HttpStatusCode.InternalServerError, result.Exception?.Message ?? result.Message);
             }
+
+            result.Value.Id = document_id;
 
             return Ok(result.Value);
         }
@@ -39,7 +43,7 @@ namespace workshop_dotnet.Controllers
         public async Task<IHttpActionResult> Getall()
         {
             var query = new QueryRequest()
-                .Statement("SELECT `default`.* FROM `default` WHERE type = $1")
+                .Statement("SELECT META().id, `default`.* FROM `default` WHERE type = $1")
                 .AddPositionalParameter(typeof(Person).Name.ToLower())
                 .ScanConsistency(ScanConsistency.RequestPlus);
 
@@ -72,14 +76,14 @@ namespace workshop_dotnet.Controllers
                 return Content(HttpStatusCode.InternalServerError, result.Exception?.Message ?? result.Message);
             }
 
-            return Ok();
+            return Ok(result);
         }
 
         [HttpPost]
         [Route("delete")]
         public async Task<IHttpActionResult> Delete([FromBody] Person person)
         {
-            if (string.IsNullOrEmpty(person?.Id))
+            if (string.IsNullOrEmpty(person.Id))
             {
                 return BadRequest("Missing or invalid 'document_id' body parameter");
             }
@@ -90,7 +94,7 @@ namespace workshop_dotnet.Controllers
                 return Content(HttpStatusCode.InternalServerError, result.Exception?.Message ?? result.Message);
             }
 
-            return Ok();
+            return Ok(result);
         }
     }
 }

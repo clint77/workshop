@@ -4,7 +4,7 @@ namespace workshop_dotnet.Models
 {
     public class Person
     {
-        [JsonProperty("document_id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
 
         [JsonProperty("firstname")]
