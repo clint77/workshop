@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.couchbase.client.java.error.TemporaryFailureException;
+import com.couchbase.client.deps.io.netty.util.internal.StringUtil;
 import com.couchbase.workshopapp.entity.Person;
 import com.couchbase.workshopapp.entity.PersonCollection;
 import com.couchbase.workshopapp.service.PersonService;
@@ -36,14 +36,8 @@ public class PersonController {
 		} catch (Exception ex) {
 			response.put("status", "failed");
 			response.put("error", ex.getMessage());
-			ex.printStackTrace();
-			if (ex instanceof TemporaryFailureException) {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 						.body(response);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(response);
-			}
 		}
 	}
 
@@ -53,7 +47,7 @@ public class PersonController {
 	@RequestMapping(value="/api/get", method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> get(@RequestParam(value = "id")String id){
 		Map<String, Object> response = new HashMap<String, Object>();
-		if (id == null) {
+		if (StringUtil.isNullOrEmpty(id)) {
 			response.put("status", "failed");
 			response.put("error", "missing person id");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -72,13 +66,8 @@ public class PersonController {
 		} catch (Exception ex) {
 			response.put("status", "failed");
 			response.put("error", ex.getMessage());
-			if (ex instanceof TemporaryFailureException) {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 						.body(response);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(response);
-			}
 		}
 
 	}
@@ -92,15 +81,17 @@ public class PersonController {
 	@RequestMapping(value = "/api/save", method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> save(@RequestBody Person person) {
 		Map<String, Object> response = new HashMap<String, Object>();
-		if (person == null) {
+		if (StringUtil.isNullOrEmpty(person.firstName) || StringUtil.isNullOrEmpty(person.lastName)) {
 			response.put("status", "failed");
 			response.put("error", "missing person info");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(response);
 		}
 		try {
-			UUID uuid = UUID.randomUUID();
-			person.id = uuid.toString();
+			if (StringUtil.isNullOrEmpty(person.id)) {
+				UUID uuid = UUID.randomUUID();
+				person.id = uuid.toString();
+			}
 			personService.save(person);
 			response.put("status", "ok");
 			return ResponseEntity.ok(response);
@@ -108,13 +99,9 @@ public class PersonController {
 		} catch (Exception ex) {
 			response.put("status", "failed");
 			response.put("error", ex.getMessage());
-			if (ex instanceof TemporaryFailureException) {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 						.body(response);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(response);
-			}
+
 		}
 	}
 
@@ -127,7 +114,7 @@ public class PersonController {
 	public ResponseEntity<Map<String,Object>> delete(@RequestBody Map<String,String> req) {
 		Map<String,Object> response = new HashMap<String, Object>();
 		String id = req.get("id");
-		if (id == "") {
+		if (StringUtil.isNullOrEmpty(id)) {
 			response.put("status", "failed");
 			response.put("error", "missing id");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -140,13 +127,8 @@ public class PersonController {
 		} catch (Exception ex) {
 			response.put("status", "failed");
 			response.put("error", ex.getMessage());
-			if (ex instanceof TemporaryFailureException)  {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 						.body(response);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(response);
-			}
 		}
 
 	}
