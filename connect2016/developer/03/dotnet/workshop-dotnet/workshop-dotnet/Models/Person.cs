@@ -21,8 +21,7 @@ namespace workshop_dotnet.Models
 
         public bool IsValid()
         {
-            return !string.IsNullOrEmpty(Id) &&
-                   !string.IsNullOrEmpty(FirstName) &&
+            return !string.IsNullOrEmpty(FirstName) &&
                    !string.IsNullOrEmpty(LastName) &&
                    !string.IsNullOrEmpty(Email);
         }

@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -58,6 +59,11 @@ namespace workshop_dotnet.Controllers
             if (person == null || !person.IsValid())
             {
                 return BadRequest("Missing or invalid body content");
+            }
+
+            if (string.IsNullOrEmpty(person.Id))
+            {
+                person.Id = Guid.NewGuid().ToString();
             }
 
             var result = await _bucket.UpsertAsync(person.Id, person);
