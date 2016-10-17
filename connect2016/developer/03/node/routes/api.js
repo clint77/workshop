@@ -1,9 +1,11 @@
 var express = require('express');
 var uuid = require('uuid');
+var config = require('config');
+var couchbaseConfig = config.get("couchbase");
 
 var couchbase = require('couchbase');
-var cluster = new couchbase.Cluster('couchbase://127.0.0.1');
-var bucket = cluster.openBucket('default');
+var cluster = new couchbase.Cluster(couchbaseConfig.server);
+var bucket = cluster.openBucket(couchbaseConfig.bucket);
 var N1qlQuery = couchbase.N1qlQuery;
 
 var router = express.Router();
