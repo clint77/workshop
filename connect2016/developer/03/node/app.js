@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
@@ -7,6 +8,8 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 
 var app = express();
+app.use(cors()); // enable CORS from all origins
+app.options('*', cors()); // allows pre-flight checks for all routes
 
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
