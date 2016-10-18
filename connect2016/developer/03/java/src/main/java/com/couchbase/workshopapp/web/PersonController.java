@@ -25,6 +25,7 @@ public class PersonController {
 	/**
 	 * Find all people in the person repository
 	 */
+	@CrossOrigin()
 	@RequestMapping(value = "/api/getAll", method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> getAll() {
 		Map<String, Object> response = new HashMap<String, Object>();
@@ -44,6 +45,7 @@ public class PersonController {
 	/**
 	 * Get a single person entity
 	 */
+	@CrossOrigin()
 	@RequestMapping(value="/api/get", method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> get(@RequestParam(value = "id")String id){
 		Map<String, Object> response = new HashMap<String, Object>();
@@ -78,6 +80,7 @@ public class PersonController {
 	 * @return
 	 */
 
+	@CrossOrigin()
 	@RequestMapping(value = "/api/save", method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> save(@RequestBody Person person) {
 		Map<String, Object> response = new HashMap<String, Object>();
@@ -110,6 +113,7 @@ public class PersonController {
 	 * @param req unique identifier for the person {"id":"1"}
 	 * @return
 	 */
+	@CrossOrigin()
 	@RequestMapping(value = "/api/delete", method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> delete(@RequestBody Map<String,String> req) {
 		Map<String,Object> response = new HashMap<String, Object>();
