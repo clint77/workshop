@@ -20,20 +20,20 @@ namespace workshop_dotnet.Controllers
 
         [HttpGet]
         [Route("get/{id?}")]
-        public async Task<IHttpActionResult> Get(string document_id = null)
+        public async Task<IHttpActionResult> Get(string id = null)
         {
-            if (string.IsNullOrEmpty(document_id))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Missing or empty 'id' query string parameter");
             }
 
-            var result = await _bucket.GetAsync<Person>(document_id);
+            var result = await _bucket.GetAsync<Person>(id);
             if (!result.Success)
             {
                 return Content(HttpStatusCode.InternalServerError, result.Exception?.Message ?? result.Message);
             }
 
-            result.Value.Id = document_id;
+            result.Value.Id = id;
 
             return Ok(result.Value);
         }

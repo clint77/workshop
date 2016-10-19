@@ -23,7 +23,7 @@ export class ItemComponent implements OnInit {
     public ngOnInit() {
         this.route.params.subscribe(params => {
             if(params["documentId"]) {
-                this.http.get(this.utility.host + "/api/get?document_id=" + params["documentId"])
+                this.http.get(this.utility.host + "/api/get/" + params["documentId"])
                     .map(result => result.json())
                     .subscribe(results => {
                         this.person = results;

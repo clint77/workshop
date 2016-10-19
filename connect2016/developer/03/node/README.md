@@ -17,6 +17,11 @@ This by default connects to _localhost_ and a bucket called _default_. However y
 * POST /api/delete
 
 ## Starting up the service
+To install dependencies, run the following:
+```
+npm install
+```
+
 To run the web service, run the following:
 ```
 gulp

@@ -13,14 +13,14 @@ var router = express.Router();
 router.get('/get/:id', function(req, res) {
   var id = req.params["id"];
   if (!id) {
-    return res.status(400).send({"status": "error", "message": "A 'document_id' is required"});
+    return res.status(400).send({"status": "error", "message": "A 'id' is required"});
   }
 
   bucket.get(id, function(err, result) {
     if (err) {
       return res.status(500).send(err);
     }
-    return res.send([result.value]);
+    return res.send(result.value);
   });
 });
 
@@ -47,30 +47,30 @@ router.post('/save', function(req, res) {
   }
 
   var doc = {
-    document_id: req.body.document_id || uuid.v4(),
+    id: req.body.id || uuid.v4(),
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     email: req.body.email,
     type: "person"
   };
-  bucket.upsert(doc.document_id, doc, function(err, result) {
+  bucket.upsert(doc.id, doc, function(err, result) {
     if (err) {
       return res.status(500).send(err);
     }
-    return res.sendStatus(200);
+    return res.status(200).send(doc);
   });
 });
 
 router.post('/delete', function(req, res) {
-  if (!req.body.document_id) {
-    return res.status(400).send({"status": "error", "message": "A 'document_id' is required"});
+  if (!req.body.id) {
+    return res.status(400).send({"status": "error", "message": "A 'id' is required"});
   }
 
-  bucket.remove(req.body.document_id, function(err, result) {
+  bucket.remove(req.body.id, function(err, result) {
     if (err) {
       return res.status(500).send(err);
     }
-    return res.sendStatus(200);
+    return res.status(200).send(req.body);
   });
 });
 
