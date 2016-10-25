@@ -9,6 +9,10 @@ import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepos
 @Configuration
 @EnableCouchbaseRepositories
 public class PersonConfig {
+	/**
+	 * Create a bean for person service
+	 * Returns the service instance
+	 */
 	@Bean
 	public PersonService personService() {
 		return new PersonService();
