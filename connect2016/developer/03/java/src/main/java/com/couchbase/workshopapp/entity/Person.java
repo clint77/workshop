@@ -3,10 +3,15 @@ package com.couchbase.workshopapp.entity;
 import com.couchbase.client.java.repository.annotation.Id;
 import org.springframework.data.annotation.Version;
 
+/**
+ * Person entity for our person repository
+ */
 public class Person {
+	/* Couchbase key */
 	@Id
 	public String id;
 
+	/* Couchbase document cas */
 	@Version
 	public long Version;
 

@@ -1,8 +1,10 @@
-package com.couchbase.workshopapp.entity;
+package com.couchbase.workshopapp.web;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.couchbase.client.deps.com.fasterxml.jackson.annotation.JsonProperty;
+import com.couchbase.workshopapp.entity.Person;
+
 
 public class PersonCollection {
 
