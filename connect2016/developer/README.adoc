@@ -19,8 +19,38 @@ Broad range of developers interested in using Couchbase Server
 
 === Requirements
 
-* Reliable wifi for the AWS/Cloud workshop
-* Thumb drives to distribute installation files/source code
+Please have the appropriate software setup in advance so that we can maximize the time we have available for the workshop. I will be at the venue at least an hour early if you need any assistance getting set up.
+ 
+You will need:
+ 
+* A computer running Windows, Mac OS X (not Sierra), or Ubuntu Linux with at least 8gb of RAM.
+* You will need sufficient privileges to install software on the computer.
+* You will need to have Docker installed (for at least part 4 of the workshop)
+* The source code and slides (available on Github and also available via USB thumb drive the day of the workshop)
+* Slides will be available in Powerpoint and PDF format
+ 
+For Java development you will need:
+* JDK 1.8
+* IntellJ IDEA (or other Java IDE)
+* Maven
+ 
+For .NET development you will need:
+* Visual Studio 2015 or later (Visual Studio Code will not be sufficient)
+ 
+For Node development you will need:
+* Node 4.6
+* npm
+* Visual Studio Code, Atom, or some other IDE
+ 
+For Angular development, you will need:
+* angular-cli
+* Node 4.6
+* npm
+ 
+If you wish to use Azure or Amazon for this workshop, you will need an account before you arrive, and some experience with using Azure/AWS.
+* Azure trial sign-up with free $200 credit: https://azure.microsoft.com/en-us/free/
+* Amazon AWS sign-up https://aws.amazon.com/
+* Couchbase Server 4.5 Enterprise Edition is available as a free trial in the Azure and AWS Marketplaces
 
 === Requirements for Attendees
 
