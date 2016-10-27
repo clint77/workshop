@@ -30,24 +30,29 @@ You will need:
 * Slides will be available in Powerpoint and PDF format
  
 For Java development you will need:
+
 * JDK 1.8
 * IntellJ IDEA (or other Java IDE)
 * Maven
  
 For .NET development you will need:
+
 * Visual Studio 2015 or later (Visual Studio Code will not be sufficient)
  
 For Node development you will need:
+
 * Node 4.6
 * npm
 * Visual Studio Code, Atom, or some other IDE
  
 For Angular development, you will need:
+
 * angular-cli
 * Node 4.6
 * npm
  
 If you wish to use Azure or Amazon for this workshop, you will need an account before you arrive, and some experience with using Azure/AWS.
+
 * Azure trial sign-up with free $200 credit: https://azure.microsoft.com/en-us/free/
 * Amazon AWS sign-up https://aws.amazon.com/
 * Couchbase Server 4.5 Enterprise Edition is available as a free trial in the Azure and AWS Marketplaces
