@@ -12,21 +12,23 @@ public class Person {
 	public String id;
 
 	/* Couchbase document cas */
-	@Version
-	public long Version;
+	// commented out CAS related code
+	//@Version
+	//public long Version;
 
-	public String firstName;
+	public String firstname;
 
-	public String lastName;
+	public String lastname;
 
 	public String email;
 
 	@Override
 	public String toString(){
-		return  "firstName:" + this.firstName + "," +
-				"lastName:" + this.lastName + "," +
-				"email:" + this.email + "," +
-				"cas:" + this.Version;
+		return  "firstname:" + this.firstname + "," +
+				"lastname:" + this.lastname + "," +
+				"email:" + this.email; // + "," +
+				// commented out CAS related code
+				//"cas:" + this.Version;
 	}
 
 }
