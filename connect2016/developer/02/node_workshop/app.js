@@ -4,15 +4,13 @@ var couchbase = require('couchbase');
 var uuid = require('uuid');
 
 // Connect to Couchbase
-// TODO: connect to the couchbase cluster with IP address
-var cluster = new couchbase.Cluster('TODO');
+var cluster = new couchbase.Cluster('couchbase://localhost?fetch_mutation_tokens=true');
 
-// TODO: get a bucket object using the bucket name
-var bucket = cluster.openBucket('TODO');
+// Open the bucket
+var bucket = cluster.openBucket('default');
 
 // Insert some user documents
-// TODO: use a new UUID as the key
-bucket.upsert("TODO", {
+bucket.upsert(uuid.v4(), {
   'first_name': 'Laura',
   'last_name': 'Franecki',
   'city': 'Lake Ollie',
@@ -21,9 +19,8 @@ bucket.upsert("TODO", {
   if (err) throw err;
 
   // Query for all our users
-  // TODO: write a N1QL query to select all the documents from the default bucket
-  var qs = 'TODO';
-  var q = couchbase.N1qlQuery.fromString(qs);
+  var qs = 'SELECT * FROM `default` ORDER BY first_name, last_name';
+  var q = couchbase.N1qlQuery.fromString(qs).consistency(couchbase.N1qlQuery.Consistency.REQUEST_PLUS);
   bucket.query(q, function(err, rows, meta) {
     if (err) throw err;
 

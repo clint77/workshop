@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "couchbase": "~2.1.0",
+    "couchbase": "^2.2.3",
     "uuid": "^2.0.3"
   },
   "author": "Brett Lawson <brett19@gmail.com>",

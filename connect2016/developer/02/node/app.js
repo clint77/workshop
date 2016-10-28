@@ -20,7 +20,7 @@ bucket.upsert(uuid.v4(), {
 
   // Query for all our users
   var qs = 'SELECT * FROM `default` ORDER BY first_name, last_name';
-  var q = couchbase.N1qlQuery.fromString(qs);
+  var q = couchbase.N1qlQuery.fromString(qs).consistency(couchbase.N1qlQuery.Consistency.REQUEST_PLUS);
   bucket.query(q, function(err, rows, meta) {
     if (err) throw err;
 
