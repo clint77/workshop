@@ -4,7 +4,7 @@ var config = require('config');
 var couchbaseConfig = config.get("couchbase");
 
 var couchbase = require('couchbase');
-var cluster = TODO; // connect to a newe couchbase Cluster using the couchbaseConfig
+var cluster = TODO; // connect to a new couchbase Cluster using the couchbaseConfig
 var bucket = TODO; // use the cluster to open a bucket using couchbaseConfig
 var N1qlQuery = couchbase.N1qlQuery;
 
