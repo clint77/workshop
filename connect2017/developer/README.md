@@ -102,15 +102,15 @@ For example, the application user must receive permission for every action inclu
 
 To create a role-based account, visit the Couchbase Administrator Dashboard and search for the **Security** tab.
 
-![Couchbase RBAC Security via Dashboard](/media/couchbase-rbac-p1.png "Couchbase RBAC Security via Dashboard")
+![Couchbase RBAC Security via Dashboard](media/couchbase-rbac-p1.png "Couchbase RBAC Security via Dashboard")
 
 By default, no users will have been created beyond the administrative user that you're already signed in with. At the top of the screen, choose **ADD USER** to create a new user account.
 
-![Couchbase RBAC Security via Dashboard](/media/couchbase-rbac-p2.png "Couchbase RBAC Security via Dashboard")
+![Couchbase RBAC Security via Dashboard](media/couchbase-rbac-p2.png "Couchbase RBAC Security via Dashboard")
 
 Each user must have a unique username as well as a password with a minimum of six characters. The user can have any number of permissions roles, but for now we only want the user to be able to read and write data using basic key-value operations.
 
-![Couchbase RBAC Security via Dashboard](/media/couchbase-rbac-p3.gif "Couchbase RBAC Security via Dashboard")
+![Couchbase RBAC Security via Dashboard](media/couchbase-rbac-p3.gif "Couchbase RBAC Security via Dashboard")
 
 Under **Data Roles**, choose the **Data Writer** and **Data Reader** roles for only the Bucket we plan to use. It is never advisable to give an application user access to more Buckets than necessary.
 
@@ -168,7 +168,7 @@ Within the project, search for the comment referring to the second step. The goa
 
 Now that data exists in the database, it would be beneficial to be able to retrieve it from within the application. In the previous step, documents were created using a unique id. If the id wasn't returned in the response, we can always obtain it from within the Couchbase Administrator Dashboard to continue:
 
-![Couchbase Document Explorer](/media/couchbase-document-explorer.png "Couchbase Document Explorer")
+![Couchbase Document Explorer](media/couchbase-document-explorer.png "Couchbase Document Explorer")
 
 With the document key, a basic data operation can be used for retrieval within the application.
 
@@ -218,13 +218,13 @@ Simple key-value operations cannot be used to query for data. Instead N1QL must 
 
 Up until now, the application account might only have the **Data Writer** and **Data Reader** roles. Head back into the Couchbase Administrator Dashboard and enable the **Query Select** role from the **Query Roles**.
 
-![Couchbase RBAC Query Roles](/media/couchbase-rbac-query-roles.png "Couchbase RBAC Query Roles")
+![Couchbase RBAC Query Roles](media/couchbase-rbac-query-roles.png "Couchbase RBAC Query Roles")
 
 Looking forward, other **Query Roles** will need to be enabled, but you should practice only enabling what you need. For this reason, leave them disabled until you need them.
 
 By now the application should be able to use N1QL. However, no indexes were created. Within the Couchbase Administrator Dashboard, find the **Query Editor**.
 
-![Couchbase Query Editor](/media/couchbase-query-editor-non-indexed.png "Couchbase Query Editor")
+![Couchbase Query Editor](media/couchbase-query-editor-non-indexed.png "Couchbase Query Editor")
 
 Indexes should be created based on the data needs of each executed N1QL query. When prototyping, it is often convenient to create a primary index like so:
 
@@ -246,7 +246,7 @@ EXPLAIN SELECT * FROM `bucket-name-here` WHERE type = 'patient';
 
 Not only should the query succeed, but it should give you information in regards to what index is being used.
 
-![Couchbase Query By Document Type](/media/couchbase-query-by-type.png "Couchbase Query By Document Type")
+![Couchbase Query By Document Type](media/couchbase-query-by-type.png "Couchbase Query By Document Type")
 
 If no primary index was available and no specific index was found, the query would have returned an error.
 
@@ -404,11 +404,11 @@ This is where Full Text Search (FTS) will shine!
 
 To use FTS, a few changes need to be made. For one, the application account must have an appropriate role for the job. Within the role editor of the Couchbase Administrator Dashboard, create an **FTS Searcher** role in the **FTS Roles** section. This will allow FTS queries to be executed.
 
-![Couchbase RBAC FTS Roles](/media/couchbase-rbac-fts-roles.png "Couchbase RBAC FTS Roles")
+![Couchbase RBAC FTS Roles](media/couchbase-rbac-fts-roles.png "Couchbase RBAC FTS Roles")
 
 Because documents will be searched, an index must be created. These indexes are different from N1QL indexes. Within the **Search** tab of the Couchbase Administrator Dashboard, choose **Add Index**.
 
-![Couchbase Full Text Search Index](/media/couchbase-fts-index.png "Couchbase Full Text Search Index")
+![Couchbase Full Text Search Index](media/couchbase-fts-index.png "Couchbase Full Text Search Index")
 
 The index should receive a name and a particular Bucket. For searching to be successful, we'll need to map the `type` property of our documents to the **JSON type field** in the UI. Finally, we'll need to declare what gets indexed, as in what is searchable within documents, and what is returned in a search.
 
@@ -416,7 +416,7 @@ Choose **Add Type Mapping** and name it whatever value would appear in a `type` 
 
 Give the index a try:
 
-![Couchbase FTS UI](/media/couchbase-fts-ui.png "Couchbase FTS UI")
+![Couchbase FTS UI](media/couchbase-fts-ui.png "Couchbase FTS UI")
 
 If there is a match between what was entered and what exists in the document, it will be returned along with the fields and a score regarding how strong of a match it is.
 
