@@ -1,0 +1,34 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.6.RELEASE'
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url "http://files.couchbase.com/maven2" }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'org.springframework', name: 'spring-tx', version:'4.3.11.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-core', version:'4.2.3.RELEASE'
+    compile group: 'com.couchbase.client', name: 'java-client', version:'2.5.0'
+    testCompile 'junit:junit:4.12'
+}
+
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes("Main-Class": "couchbase.Application")
+    }
+}
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+    main = 'couchbase.Application'
+    classpath = sourceSets.main.runtimeClasspath
+}

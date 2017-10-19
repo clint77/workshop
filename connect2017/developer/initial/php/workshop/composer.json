@@ -1,0 +1,28 @@
+{
+    "name": "couchbase-demo",
+    "description": "Couchbase workshop application using Slim Framework",
+    "keywords": ["demo", "couchbase", "workshop"],
+    "homepage": "https://github.com/couchbaselabs/connect-developer-workshop",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Avseyev",
+            "email": "sergey@couchbase.com",
+            "homepage": "https://www.couchbase.com/"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "ext-couchbase": ">=2.4.1",
+        "slim/slim": "^3.1",
+        "monolog/monolog": "^1.17",
+        "ramsey/uuid": "^3.7",
+        "league/json-guard": "^1.0"
+    },
+    "config": {
+        "process-timeout" : 0
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public public/index.php"
+    }
+}

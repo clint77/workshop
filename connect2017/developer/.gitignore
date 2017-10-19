@@ -1,0 +1,9 @@
+node_modules
+build
+target
+.idea
+.gradle
+
+.DS_Store*
+Thumbs.db*
+~*
