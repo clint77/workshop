@@ -162,7 +162,9 @@ INSERT INTO `bucket-name-here` (KEY, VALUE) VALUES ("key-here", {});
 
 However, remember the roles that were assigned to the user account. The roles allowed were for data operations, but not N1QL.
 
-Within the project, search for the comment referring to the second step. The goal is to take the request payload and create a new document from it with a unique document key. If there was an error, it should be returned, otherwise the created document should be returned.
+Within the project, search for the comments referring to the second
+step, "Step 2".  Note that throughout this workshop, when referring to
+a step, there may be multiple methods stubbed out for a given step.  The goal is to take the request payload and create a new document from it with a unique document key. If there was an error, it should be returned, otherwise the created document should be returned.
 
 ### Step 3 - Getting Data by Document Id
 
@@ -208,7 +210,7 @@ SELECT * FROM `bucket-name-here` WHERE META().id = 'key-here';
 
 Unless you've altered the roles for your user account, a N1QL query using a `SELECT` operator will result in errors due to lack of permissions.
 
-Within the project, search for the third step. The goal here is to retrieve documents based on a provided document key and return them back to the client.
+Within the project, search for the third step, "Step 3". The goal here is to retrieve documents based on a provided document key and return them back to the client.
 
 ### Step 4 - Querying for Multiple Documents with N1QL
 
@@ -284,7 +286,7 @@ $bucket->query(N1qlQuery::fromString("N1QL-QUERY-HERE"));
 
 For more information regarding querying with PHP, check out the [PHP SDK documentation](http://docs.couchbase.com/sdk-api/couchbase-php-client-2.4.1/classes/Couchbase.Bucket.html#method_query).
 
-Within the project, find the comments for the fourth step. The goal here is to return all documents for a particular document type. There are several document types, per the data models, so this step will span multiple locations.
+Within the project, find the comments for the fourth step, "Step 4". The goal here is to return all documents for a particular document type. There are several document types, per the data models, so this step will span multiple locations.
 
 A `SELECT` operator will be used in this example. More information on using `SELECT` can be found in the [N1QL documentation](https://developer.couchbase.com/documentation/server/current/n1ql/n1ql-language-reference/selectintro.html).
 
@@ -335,7 +337,8 @@ $result = $bucket->query($query);
 
 The `myVariableId` variable is assigned to the `id` parameter which looks like `$id` in the actual query. If the user decides to pass something malicious into the variable, it won't have any negative effects on the data or database.
 
-Within the project, find the comment referencing the fifth step. The goal here is to make use of parameterized queries using user defined data. There will be several queries in this step, each performing a different task.
+Within the project, find the comment referencing the fifth step, "Step
+5". The goal here is to make use of parameterized queries using user defined data. There will be several queries in this step, each performing a different task.
 
 More information on using parameterized queries can be found in the [N1QL query documentation](https://developer.couchbase.com/documentation/server/current/sdk/n1ql-query.html).
 
@@ -347,7 +350,8 @@ What happens if the queries need to bring documents together or evaluate documen
 
 Think back to the data models that were planned at the beginning of the workshop. Each of the models had some kind of relationship with another document model. For example, the documents with doctor data had properties called `patients` which were an array of document keys for patient documents. It might be valuable to use a `JOIN` operator to query for data in matching scenarios.
 
-Within the project, find the comments referring to the sixth step. Two different queries should be used depending on what the client passes.
+Within the project, find the comments referring to the sixth step,
+"Step 6". Two different queries should be used depending on what the client passes.
 
 The first query should find all patients that were assigned to a particular doctor. The second query should find all patients that a doctor has serviced. Being assigned to a doctor does not mean serviced. Instead, serviced patients will have a note from a doctor.
 
@@ -394,7 +398,8 @@ More information regarding updating part of a document with PHP can be found in 
 
 In theory, the `information.firstname` property would be updated for a particular document key. We would not need to first retrieve the full document, make the change, merge the data, and then save, but instead just make the change at a given path. This is very fast and very beneficial when performance is everything.
 
-Within the project, find comments referring to the seventh step. The goal is to add data to arrays within documents without first obtaining the document or caring what else exists in the document. For example, when a patient is assigned to a doctor, the document key for that patient should be added to the `patients` array. If a doctor makes a note for a patient, the note should be added to the `notes` array.
+Within the project, find comments referring to the seventh step, "Step
+7". The goal is to add data to arrays within documents without first obtaining the document or caring what else exists in the document. For example, when a patient is assigned to a doctor, the document key for that patient should be added to the `patients` array. If a doctor makes a note for a patient, the note should be added to the `notes` array.
 
 ### Step 8 - Searching within a Document using Full Text Search
 
@@ -473,7 +478,8 @@ There are several different types of FTS queries. Each query can specify which f
 
 To learn more about the different kinds of queries that can be constructed, visit [here](https://developer.couchbase.com/documentation/server/current/fts/fts-queries.html).
 
-Within the project, find the comment referring to the eighth step. The goal in this step is to be able to search for medical conditions that patients have. For example, say a doctor wants to search for people with Hepatitis so they can evaluate a cure based on notes that other doctors took. This should search the `notes` property in documents. Let's assume that doctors cannot spell correctly, so results should return based on variations of the search term.
+Within the project, find the comment referring to the eighth step,
+"Step 8". The goal in this step is to be able to search for medical conditions that patients have. For example, say a doctor wants to search for people with Hepatitis so they can evaluate a cure based on notes that other doctors took. This should search the `notes` property in documents. Let's assume that doctors cannot spell correctly, so results should return based on variations of the search term.
 
 ## Resources
 
