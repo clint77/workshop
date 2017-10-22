@@ -1,6 +1,6 @@
 # Couchbase Connect 2017 Workshop
 
-This repository is a workshop for .NET, Java, and Node.js developers interested in Couchbase NoSQL. By completing this workshop you'll walk away with skills in N1QL, Full Text Search (FTS), Sub-Document Operations, and best practices in API design.
+This repository is a workshop for .NET, Java, Node.js, and PHP developers interested in Couchbase NoSQL. By completing this workshop you'll walk away with skills in N1QL, Full Text Search (FTS), Sub-Document Operations, and best practices in API design.
 
 To download this repository, execute the following:
 
