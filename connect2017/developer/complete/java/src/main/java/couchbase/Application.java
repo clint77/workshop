@@ -152,7 +152,7 @@ public class Application implements Filter {
         JsonDocument document = JsonDocument.create(UUID.randomUUID().toString(), jsonData);
         try {
             bucket().insert(document);
-            return new ResponseEntity<String>(payload, HttpStatus.OK);
+            return new ResponseEntity<String>(jsonData.toString(), HttpStatus.OK);
         } catch (Exception e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
